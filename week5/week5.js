@@ -3,6 +3,7 @@
 // run: 
 //   mongo --shell localhost/week5 week5.js
 
+
 homework = { };
 if( "week5" != db ) { 
     print("week5.js: want db to be 'week5' when the shell starts. terminating.");
