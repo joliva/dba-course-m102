@@ -1,4 +1,4 @@
-hostname = "lomac.local"
+host = "jomac-7.local"
 
 db = db.getSisterDB("config");
 
@@ -38,9 +38,9 @@ function ourAddShard(setname,port) {
 		{
 			"_id" : setname,
 			"members" : [
-				{ _id: 0, host: hostname+":" + port },
-				{ _id: 1, host: hostname+":" + (port+1) },
-				{ _id: 2, host: hostname+":" + (port+2) }
+				{ _id: 0, host: host+":" + port },
+				{ _id: 1, host: host+":" + (port+1) },
+				{ _id: 2, host: host+":" + (port+2) }
 			]
 		}
 	);
@@ -49,7 +49,7 @@ function ourAddShard(setname,port) {
 
 	print("adding shard...");
 	db = mongosConn;
-	res = sh.addShard(setname+"/"+hostname+":"+port);
+	res = sh.addShard(setname+"/"+host+":"+port);
 	check();
 	print("done; run sh.status()");
 }

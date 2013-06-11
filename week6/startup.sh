@@ -1,6 +1,8 @@
 # run processes for the cluster
 # running on a single dev machine
 
+host="jomac-7.local"
+
 cd /data/dbs
 
 mkdir a0 2> /dev/null
@@ -26,10 +28,10 @@ mongod --configsvr --dbpath cfg1 --port 26051 --fork --logpath log.cfg1 --logapp
 mongod --configsvr --dbpath cfg2 --port 26052 --fork --logpath log.cfg2 --logappend
 
 # mongos processes, default mongo server port is 27017
-mongos --configdb lomac.local:26050,lomac.local:26051,lomac.local:26052 --fork --logpath log.mongos0 --logappend
-mongos --configdb lomac.local:26050,lomac.local:26051,lomac.local:26052 --fork --logpath log.mongos1 --logappend --port 26061
-mongos --configdb lomac.local:26050,lomac.local:26051,lomac.local:26052 --fork --logpath log.mongos2 --logappend --port 26062
-mongos --configdb lomac.local:26050,lomac.local:26051,lomac.local:26052 --fork --logpath log.mongos3 --logappend --port 26063
+mongos --configdb $host:26050,$host:26051,$host:26052 --fork --logpath log.mongos0 --logappend
+mongos --configdb $host:26050,$host:26051,$host:26052 --fork --logpath log.mongos1 --logappend --port 26061
+mongos --configdb $host:26050,$host:26051,$host:26052 --fork --logpath log.mongos2 --logappend --port 26062
+mongos --configdb $host:26050,$host:26051,$host:26052 --fork --logpath log.mongos3 --logappend --port 26063
 
 # shard servers (mongodb data servers)
 # note:	don't use smallfiles nor such a small oplogSize in production; these are here running many on one machine
